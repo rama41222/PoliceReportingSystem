@@ -2,10 +2,12 @@
   "name": "stolen",
   "version": "1.0.0",
   "description": "API for reporting stolen bikes in berlin",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "jest",
-    "start": "node server.js"
+    "start": "node src/server.js",
+    "lint": "eslint --fix --ext js --ext json src || exit 0",
+    "dev": "nodemon src/server.js --ext js,json"
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,29 @@
   "bugs": {
     "url": "https://github.com/rama41222/PoliceReportingSystem/issues"
   },
-  "homepage": "https://github.com/rama41222/PoliceReportingSystem#readme"
+  "homepage": "https://github.com/rama41222/PoliceReportingSystem#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-promise": "^4.1.1",
+    "husky": "^2.4.1",
+    "lint-staged": "^8.2.1",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,json}": [
+      "prettier --single-quote --write",
+      "eslint --ext js --ext json src",
+      "git add"
+    ]
+  }
 }
