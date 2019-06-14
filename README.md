@@ -53,7 +53,10 @@ from database.
 ### Resolve a case
 1. Call the Resolution endpoint with case id
 2. Set the report state to resolved
-3. un allocate police officer and enqueue into the available police officers queue.
+3. Deallocate police officer 
+4. Check if pending reports are available in reports queue
+5. If yes, allocate the police officer into the report 
+6. Else enqueue into the available police officers queue.
 
 ## Endpoints
 
