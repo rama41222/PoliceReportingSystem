@@ -1,5 +1,7 @@
 # Stolen Bikes
 
+[![Build Status](https://travis-ci.com/rama41222/PoliceReportingSystem.svg?token=uEvpxZqxzddnYWiCyvCy&branch=master)](https://travis-ci.com/rama41222/PoliceReportingSystem)
+
 Stolen bikes are a typical problem in Berlin. This is a way of automating the stolen bike cases for the efficient 
 handling of reported cases.
 
