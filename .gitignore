@@ -1,0 +1,30 @@
+
+# Intellij
+.idea
+
+# mac
+.DS_Store
+
+# VS code
+.vscode
+
+# node_modules
+node_modules/
+
+# test
+*.apis/test
+
+.# Logs
+*.log
+
+# env
+.env
+
+# neo4j dump directory
+dumps
+
+# neo4j persistant data directory
+neo4j_data
+
+# neo4j configuration
+neo4j_conf
