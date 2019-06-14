@@ -26,6 +26,9 @@
     "url": "https://github.com/rama41222/PoliceReportingSystem/issues"
   },
   "homepage": "https://github.com/rama41222/PoliceReportingSystem#readme",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -34,6 +37,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-promise": "^4.1.1",
     "husky": "^2.4.1",
+    "jest": "^24.8.0",
     "lint-staged": "^8.2.1",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2"
