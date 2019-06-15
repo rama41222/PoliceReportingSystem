@@ -28,3 +28,6 @@ neo4j_data
 
 # neo4j configuration
 neo4j_conf
+
+# migration config
+config.json
