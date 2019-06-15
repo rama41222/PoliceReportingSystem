@@ -1,8 +1,6 @@
 const { sequelize, Sequelize } = require('../../lib/bootstrap/database');
 
-const User = sequelize.define(
-  'User',
-  {
+const User = sequelize.define('User', {
     id: {
       type: Sequelize.BIGINT,
       primaryKey: true,
@@ -23,16 +21,16 @@ const User = sequelize.define(
     indexes: [
       {
         name: 'name',
-        unique: true,
+        unique: false,
         fields: ['name'],
       },
       {
         name: 'is_occupied',
-        unique: true,
+        unique: false,
         fields: ['is_occupied'],
       },
     ],
-  }
+  },
 );
 
 module.exports = User;
