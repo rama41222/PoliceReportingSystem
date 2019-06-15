@@ -4,7 +4,7 @@
   "description": "API for reporting stolen bikes in berlin",
   "main": "src/server.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "start": "node src/server.js",
     "lint": "eslint --fix --ext js --ext json src || exit 0",
     "dev": "nodemon src/server.js --ext js,json"
@@ -42,11 +42,6 @@
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "src/**/*.{js,json}": [
       "prettier --single-quote --write",
@@ -63,6 +58,8 @@
     "joi": "^14.3.1",
     "morgan": "^1.9.1",
     "sequelize": "^5.8.9",
+    "sequelize-cli": "^5.5.0",
+    "supertest": "^4.0.2",
     "tedious": "^6.2.0"
   }
 }
