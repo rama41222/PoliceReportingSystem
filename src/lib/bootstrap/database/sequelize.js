@@ -1,7 +1,5 @@
 const Sequelize = require('sequelize');
-const config = require('./../../../config');
-
-const { database } = config;
+const { database } = require('./../../../config');
 
 const sequelize = new Sequelize(database.name, database.username, database.password, {
   host: database.host,
@@ -17,7 +15,7 @@ const sequelize = new Sequelize(database.name, database.username, database.passw
   },
 });
 
-async function connect() {
+async function connectSQL() {
   return sequelize
     .authenticate()
     .then(() => {
@@ -30,7 +28,7 @@ async function connect() {
 }
 
 module.exports = {
-  connect,
+  connectSQL,
   sequelize,
   Sequelize,
 };

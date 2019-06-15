@@ -1,7 +1,10 @@
-const { connect, sequelize, Sequelize } = require('./sequelize');
+const { connectSQL, sequelize, Sequelize } = require('./sequelize');
+const { redisClient, connectRedis } = require('./redis');
 
 module.exports = {
-  connect,
+  connectSQL,
+  connectRedis,
   sequelize,
   Sequelize,
+  redisClient
 };

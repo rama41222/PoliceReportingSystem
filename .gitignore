@@ -20,14 +20,5 @@ node_modules/
 # env
 .env
 
-# neo4j dump directory
-dumps
-
-# neo4j persistant data directory
-neo4j_data
-
-# neo4j configuration
-neo4j_conf
-
 # migration config
 config.json

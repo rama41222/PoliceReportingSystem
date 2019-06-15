@@ -14,6 +14,7 @@ const {
   SQL_POOL_ACQ,
   SQL_POOL_IDLE,
   SQL_LOGGING,
+  REDIS_URL,
 } = process.env;
 
 const config = {
@@ -26,6 +27,9 @@ const config = {
   corsConfig: {
     enabled: true,
     credentials: true,
+  },
+  redisConfig: {
+    url: REDIS_URL,
   },
   database: {
     host: SQL_HOST,
