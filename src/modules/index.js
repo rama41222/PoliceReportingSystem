@@ -1,2 +1,5 @@
-/* eslint-disable no-unused-vars */
-module.exports = async app => console.log('routes');
+const users  = require('./users/routes');
+
+module.exports = (app) => {
+  app.use('/api/v1/users', users);
+};
