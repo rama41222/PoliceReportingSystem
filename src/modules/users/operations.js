@@ -1,8 +1,15 @@
-const User = require('./model');
+const Users = require('./model');
 
 async function health(req, res) {
-  console.log(User);
-  await User.findOne({ where: { id: 1 } });
+  try{
+    const employee = new Users({
+      name: 'P1'
+    });
+    await employee.save();
+  } catch (e) {
+    res.status(400).send(e);
+    
+  }
   res.status(200).send();
 }
 

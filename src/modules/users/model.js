@@ -1,6 +1,6 @@
 const { sequelize, Sequelize } = require('../../lib/bootstrap/database');
 
-const User = sequelize.define('User', {
+const User = sequelize.define('Users', {
     id: {
       type: Sequelize.BIGINT,
       primaryKey: true,
@@ -16,6 +16,7 @@ const User = sequelize.define('User', {
     },
   },
   {
+    timestamps: true,
     createdAt: 'created',
     updatedAt: 'modified',
     indexes: [
