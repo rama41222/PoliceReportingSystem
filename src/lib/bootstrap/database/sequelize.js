@@ -31,4 +31,5 @@ async function connect() {
 module.exports = {
   connect,
   sequelize,
+  Sequelize,
 };
