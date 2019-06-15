@@ -1,18 +1,29 @@
 const Users = require('./model');
 
-async function health(req, res) {
-  try{
-    const employee = new Users({
-      name: 'P1'
-    });
-    await employee.save();
-  } catch (e) {
-    res.status(400).send(e);
-    
-  }
-  res.status(200).send();
+async function list(req, res) {
+
+}
+
+async function listOne(req, res) {
+
+}
+
+async function create(req, res) {
+
+}
+
+async function edit(req, res) {
+
+}
+
+async function remove(req, res) {
+
 }
 
 module.exports = {
-  health
+  list,
+  listOne,
+  create,
+  edit,
+  remove
 };
