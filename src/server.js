@@ -16,4 +16,4 @@ async function main() {
 }
 
 main().catch((e) => console.error(e.message));
-module.exports = main;
+module.exports = server;
