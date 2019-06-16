@@ -29,7 +29,11 @@ const Report = sequelize.define('Reports', {
     },
     assignee_id: {
       type: Sequelize.BIGINT,
-      allowNull: false,
+      allowNull: true,
+    },
+    status: {
+      type: Sequelize.ENUM('RESOLVED', 'PENDING','UNRESOLVED'),
+      defaultValue: 'UNRESOLVED'
     },
   },
   {
@@ -39,7 +43,7 @@ const Report = sequelize.define('Reports', {
     indexes: [
       {
         name: 'reg_number',
-        unique: true,
+        unique: false,
         fields: ['reg_number'],
       },
     ],
