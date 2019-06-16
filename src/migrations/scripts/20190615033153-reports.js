@@ -34,7 +34,11 @@ module.exports = {
             model: 'Users',
             key: 'id',
           },
-          allowNull: false,
+          allowNull: true,
+        },
+        status: {
+          type: Sequelize.ENUM('RESOLVED', 'PENDING','UNRESOLVED'),
+          defaultValue: 'UNRESOLVED'
         },
         created: {
           type: Sequelize.DATE,
@@ -55,7 +59,7 @@ module.exports = {
         indexes: [
           {
             name: 'reg_number',
-            unique: true,
+            unique: false,
             fields: ['reg_number'],
           },
         ],
