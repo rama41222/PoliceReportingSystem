@@ -1,0 +1,28 @@
+{
+  "development": {
+    "username": "",
+    "password": "",
+    "database": "stolen",
+    "host": "",
+    "port": 14330,
+    "dialect": "mssql"
+  },
+  "test": {
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "127.0.0.1",
+    "dialect": "mssql",
+    "port": 14330
+
+  },
+  "production": {
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "127.0.0.1",
+    "dialect": "mssql",
+    "port": 14330
+
+  }
+}
