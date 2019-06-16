@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "",
-    "password": "",
+    "username": "sa",
+    "password": "test@123",
     "database": "stolen",
-    "host": "",
+    "host": "127.0.0.1",
     "port": 14330,
     "dialect": "mssql"
   },

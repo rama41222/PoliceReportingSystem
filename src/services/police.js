@@ -44,7 +44,7 @@ async function reSyncPoliceQueue() {
     if(newList.length > 1) {
       redisClient.rpush(newList, (err, data) => {
         if(err) {
-          // reject(err.message);
+          reject(err.message);
         }
         resolve(data);
       })

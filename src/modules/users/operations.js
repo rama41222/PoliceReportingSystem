@@ -1,16 +1,17 @@
 const User = require('./model');
 const Report = require('./../reports/model');
-const { setPoliceman } = require('./../../services/police');
+const { setPoliceman, reSyncPoliceQueue } = require('./../../services/police');
 const { getNextPendingReport, reSyncReports } = require('./../../services/reports');
 
 async function list(req, res) {
-  const status = req.query.status;
+  
+  const isOccupied = req.query.isOccupied;
   const options = {};
   options.limit = parseInt(req.query.limit,10) || 100;
   options.skip = parseInt(req.query.skip,10) || 0;
   
-  if(status) {
-    options.where = { status };
+  if(isOccupied) {
+    options.where = { is_occupied: isOccupied };
   }
   
   const users = await User.findAll(options).catch(e => (res.status(400).json({ message: 'Database error'})));
@@ -18,6 +19,7 @@ async function list(req, res) {
 }
 
 async function listOne(req, res) {
+  
   const { id } = req.params;
   const user = await User.findAll({ where: { id }});
   res.status(200).json({ user });
@@ -33,7 +35,7 @@ async function create(req, res) {
     
     if(newUser) {
       
-      const nextUnResolvedReport = await getNextPendingReport();
+      const nextUnResolvedReport = await getNextPendingReport().catch(console.error);
     
       if(nextUnResolvedReport) {
         
@@ -58,15 +60,20 @@ async function create(req, res) {
 async function edit(req, res) {
   const { id } = req.params;
   const update = await User.update(req.body, { where: { id }});
+  
   if(!update && update === 0) {
     return res.status(201).send();
   }
+  
+  await reSyncPoliceQueue();
   res.status(200).json({ message: 'Updated successfully'});
 }
 
 async function remove(req, res) {
+  
   const { id } = req.params;
   await User.remove({ where: { id }});
+  await reSyncPoliceQueue();
   res.status(200).send();
 }
 

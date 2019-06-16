@@ -50,7 +50,7 @@ async function reSyncReports() {
         resolve(data);
       })
     } else {
-      reject('All reports are resolved');
+      reject('All reports have been resolved');
     }
   });
 }

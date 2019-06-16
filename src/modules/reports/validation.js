@@ -2,44 +2,34 @@ const Joi = require('joi');
 
 module.exports = {
   list: {
-    query: {
-      id: Joi.string(),
-    },
+    query: Joi.object().optional().keys({
+      status: Joi.string().optional(),
+    })
   },
-  listOne: {
+  id: {
     params: {
-      id: Joi.string().required(),
+      id: Joi.number().integer().min(1).required(),
     },
   },
   create: {
     body: {
       owner: Joi.string().required(),
       reg_number: Joi.string().required(),
-      color: Joi.string(),
+      color: Joi.string().optional(),
       stolen_date: Joi.string().required(),
-      description: Joi.string(),
+      description: Joi.string().optional(),
     },
   },
   edit: {
     body: {
-      owner: Joi.string(),
-      reg_number: Joi.string(),
-      color: Joi.string(),
-      stolen_date: Joi.string(),
-      description: Joi.string(),
+      owner: Joi.string().optional(),
+      reg_number: Joi.string().optional(),
+      color: Joi.string().optional(),
+      stolen_date: Joi.string().optional(),
+      description: Joi.string().optional(),
     },
     params:{
-      id: Joi.string().required(),
-    }
-  },
-  resolve: {
-    params:{
-      id: Joi.string().required(),
-    }
-  },
-  remove: {
-    params:{
-      id: Joi.string().required(),
+      id: Joi.number().integer().min(1).required(),
     }
   },
 };

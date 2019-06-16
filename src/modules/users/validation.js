@@ -2,11 +2,11 @@ const Joi = require('joi');
 
 module.exports = {
   list: {
-    query: {
-      id: Joi.string(),
-    },
+    query: Joi.object().optional().keys({
+      isOccupied: Joi.string().optional(),
+    })
   },
-  listOne: {
+  id: {
     params: {
       id: Joi.string().required(),
     },
@@ -18,20 +18,11 @@ module.exports = {
   },
   edit: {
     body: {
-      name: Joi.string(),
+      name: Joi.string().optional(),
     },
     params:{
       id: Joi.string().required(),
     }
   },
-  resolve: {
-    params:{
-      id: Joi.string().required(),
-    }
-  },
-  remove: {
-    params:{
-      id: Joi.string().required(),
-    }
-  },
+
 };
