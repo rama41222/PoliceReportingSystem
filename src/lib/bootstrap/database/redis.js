@@ -1,23 +1,14 @@
 const redis = require('redis');
 const { redisConfig } = require('./../../../config');
 
-let redisClient;
+const redisClient = redis.createClient(redisConfig.host);
 
-async function connectRedis() {
-  redisClient = redis.createClient(redisConfig.url);
-  
-  redisClient.on('connect', function() {
-    console.info('Redis client connected');
-  });
-  
-  redisClient.on('error', function (err) {
-    console.info('Something went wrong ' + err);
-  });
-  
-  return redisClient;
-}
+redisClient.on('connect', function() {
+  console.info('Redis client connected');
+});
 
-module.exports = {
-  connectRedis,
-  redisClient
-};
+redisClient.on('error', function (err) {
+  console.info('Something went wrong ' + err);
+});
+
+module.exports = redisClient;
