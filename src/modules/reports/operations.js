@@ -29,7 +29,7 @@ async function create(req, res) {
   const report = new Report(req.body);
   try {
   
-    const id = await getNextAvailablePoliceman().catch(console.error);;
+    const id = await getNextAvailablePoliceman().catch(console.error);
   
     if (!id) {
       const unassignedReport = await report.save();
@@ -40,7 +40,7 @@ async function create(req, res) {
     report.assignee_id = id;
     report.status = 'PENDING';
     const saveReport = await report.save();
-    const policeOfficer = await User.update({ is_occupied: true },{ where: { id }})
+    const policeOfficer = await User.update({ is_occupied: true },{ where: { id }});
   
     if (!saveReport || !policeOfficer) {
       return res.status(400).json({ message: 'Data saving error'});
