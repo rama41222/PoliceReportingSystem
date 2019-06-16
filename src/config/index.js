@@ -29,7 +29,9 @@ const config = {
     credentials: true,
   },
   redisConfig: {
-    url: REDIS_URL,
+    host: REDIS_URL,
+    pQueue: 'policemen',
+    rQueue: 'reports'
   },
   database: {
     host: SQL_HOST,
