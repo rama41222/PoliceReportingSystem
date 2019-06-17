@@ -3,6 +3,13 @@ const User = require('./../users/model');
 const { getNextAvailablePoliceman, setPoliceman, reSyncPoliceQueue } = require('./../../services/police');
 const { setReport, getNextPendingReport, reSyncReports } = require('./../../services/reports');
 
+/**
+ * This function will list down all the reports
+ * It accepts query param status which can be PENDING, RESOLVED or UNRESOLVED
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
 async function list(req, res) {
   
   const status = req.query.status;
@@ -18,25 +25,41 @@ async function list(req, res) {
   res.status(200).json({ reports });
 }
 
+/**
+ * This function will list down one report
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
 async function listOne(req, res) {
   const { id } = req.params;
   const report = await Report.findAll({ where: { id }});
   res.status(200).json({ report });
 }
 
+/**
+ * This function will create a report
+ * Assign the report to a policeman
+ * @param req
+ * @param res
+ * @returns {Promise<*>}
+ */
 async function create(req, res) {
-  
+  // Create a new report
   const report = new Report(req.body);
   try {
-  
+    
+    // Get the next available police person from queue
     const id = await getNextAvailablePoliceman().catch(console.error);
   
     if (!id) {
+      // if there's no policeman available, report will be just saved and enqueued into unresolved reports queue
       const unassignedReport = await report.save();
       await setReport(unassignedReport.id);
       return res.status(200).json({ report: unassignedReport, message: 'Currently all officers are occupied, your query will be attended shortly!' });
     }
   
+    // else report is assigned to a police officer
     report.assignee_id = id;
     report.status = 'PENDING';
     const saveReport = await report.save();
@@ -52,6 +75,12 @@ async function create(req, res) {
   }
 }
 
+/**
+ * This function will edit a report
+ * @param req
+ * @param res
+ * @returns {Promise<*>}
+ */
 async function edit(req, res) {
   const { id } = req.params;
   const update = await Report.update(req.body, { where: { id }});
@@ -64,6 +93,12 @@ async function edit(req, res) {
   res.status(200).json({ message: 'Updated successfully'});
 }
 
+/**
+ * This function is used to resolve a case filed
+ * @param req
+ * @param res
+ * @returns {Promise<*>}
+ */
 async function resolve(req, res) {
   
   try {
@@ -91,6 +126,12 @@ async function resolve(req, res) {
   }
 }
 
+/**
+ * This function is used to remove a report
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
 async function remove(req, res) {
   const { id } = req.params;
   await Report.remove({ where: { id }});

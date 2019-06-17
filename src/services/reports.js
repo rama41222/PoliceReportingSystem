@@ -2,7 +2,10 @@ const { redisClient } = require('./../lib/bootstrap/database');
 const { redisConfig } = require('./../config');
 const Report = require('./../modules/reports/model');
 
-
+/**
+ * This function will return the next available report from the redis queue
+ * @returns {Promise<*>}
+ */
 async function getNextPendingReport() {
   return new Promise((resolve, reject) => {
     redisClient.rpop(redisConfig.rQueue, (err, value) => {
@@ -14,6 +17,10 @@ async function getNextPendingReport() {
   })
 }
 
+/**
+ * This function will add a report to redis queue
+ * @returns {Promise<*>}
+ */
 async function setReport(id) {
   return new Promise((resolve, reject) => {
     redisClient.rpush([redisConfig.rQueue, id], (err, size) => {
@@ -25,6 +32,10 @@ async function setReport(id) {
   });
 }
 
+/**
+ * This function will sync redis queue and database
+ * @returns {Promise<*>}
+ */
 async function reSyncReports() {
   const results = await Report.findAll({ where: { status: 'UNRESOLVED' },  attributes: ['id']});
   const newList = [];
@@ -54,8 +65,6 @@ async function reSyncReports() {
     }
   });
 }
-
-reSyncReports();
 
 module.exports = {
   getNextPendingReport,

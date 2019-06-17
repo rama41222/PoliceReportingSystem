@@ -2,6 +2,10 @@ const { redisClient } = require('./../lib/bootstrap/database');
 const { redisConfig } = require('./../config');
 const User = require('./../modules/users/model');
 
+/**
+ * This function will return the next available policeman from the redis queue
+ * @returns {Promise<*>}
+ */
 async function getNextAvailablePoliceman() {
   return new Promise((resolve, reject) => {
     redisClient.rpop(redisConfig.pQueue, (err, value) => {
@@ -13,6 +17,11 @@ async function getNextAvailablePoliceman() {
   })
 }
 
+/**
+ * This function will enqueue a policeman in to redis queue
+ * @param id
+ * @returns {Promise<*>}
+ */
 async function setPoliceman(id) {
    return new Promise((resolve, reject) => {
      redisClient.rpush([redisConfig.pQueue, id], (err, size) => {
@@ -24,6 +33,10 @@ async function setPoliceman(id) {
    });
 }
 
+/**
+ * This function will sync the redis queue with the mssql database
+ * @returns {Promise<*>}
+ */
 async function reSyncPoliceQueue() {
   const results = await User.findAll({ where: { is_occupied: false },  attributes: ['id']});
   const newList = [];
@@ -53,7 +66,6 @@ async function reSyncPoliceQueue() {
     }
   });
 }
-reSyncPoliceQueue();
 
 module.exports = {
   getNextAvailablePoliceman,

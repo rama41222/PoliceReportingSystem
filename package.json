@@ -4,7 +4,7 @@
   "description": "API for reporting stolen bikes in berlin",
   "main": "src/server.js",
   "scripts": {
-    "test": "jest --detectOpenHandles",
+    "test": "jest",
     "start": "node src/server.js",
     "lint": "eslint --fix --ext js --ext json src || exit 0",
     "dev": "nodemon src/server.js --ext js,json"
