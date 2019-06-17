@@ -1,6 +1,6 @@
 const validation = require('express-validation');
 
-const responseParser = (err, req, res) => {
+const responseParser = (err, req, res, next) => {
   if (err instanceof validation.ValidationError) {
     if (!err.message) {
       res.status(400).send();
