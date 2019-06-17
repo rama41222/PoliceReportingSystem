@@ -10,6 +10,25 @@ handling of reported cases.
 * Design Discussion 
 * Edge Cases
 
+# Installation
+1. Install redis on your system
+2. Start redis 
+3. Install MSSQL on your system ( use docker)
+4. Create a table called stolen in MSSQL database
+5. Goto `src/migrations/config/config.json` and fill out the required information
+6. Run the migrations from root directory
+    ```
+     sequelize db:migrate
+    ```
+7. Goto the docs folder and use the provided postman collection to interact with the API
+
+# TODO
+1. Automated Deployments using docker.
+2. Properly configure travis.
+3. Increase the test coverage.
+4. Load testing the application.
+5. Implement caching service using redis.
+
 # Requirements 
 
 * Report a Stolen bike
