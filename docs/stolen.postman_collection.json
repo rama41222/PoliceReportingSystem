@@ -1,0 +1,265 @@
+{
+	"info": {
+		"_postman_id": "6a6c2980-1779-429b-b412-e1d3b8a0aaa6",
+		"name": "stolen",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "reports",
+			"item": [
+				{
+					"name": "report a case",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "owner",
+									"value": "O1",
+									"type": "text"
+								},
+								{
+									"key": "reg_number",
+									"value": "23",
+									"type": "text"
+								},
+								{
+									"key": "color",
+									"value": "green",
+									"type": "text"
+								},
+								{
+									"key": "stolen_date",
+									"value": "15/06/19",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "green color racing bike lost",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/reports",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all reports",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{base_url}}/api/v1/reports?status=PENDING&limit=1&skip=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "PENDING"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "skip",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get report by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{base_url}}/api/v1/reports/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resolve a case",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "owner",
+									"value": "O1",
+									"type": "text"
+								},
+								{
+									"key": "reg_number",
+									"value": "23",
+									"type": "text"
+								},
+								{
+									"key": "color",
+									"value": "green",
+									"type": "text"
+								},
+								{
+									"key": "stolen_date",
+									"value": "15/06/19",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "green color racing bike lost",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/reports",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "create policeman",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "p1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/health",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
